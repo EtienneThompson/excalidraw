@@ -470,6 +470,7 @@ export interface ExcalidrawProps {
     appState: AppState,
   ) => JSX.Element | null;
   aiEnabled?: boolean;
+  handleContextMenuItems?: (actions: ContextMenuItems) => ContextMenuItems;
 }
 
 export type SceneData = {

@@ -49,6 +49,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
     validateEmbeddable,
     renderEmbeddable,
     aiEnabled,
+    handleContextMenuItems,
   } = props;
 
   const canvasActions = props.UIOptions?.canvasActions;
@@ -135,6 +136,7 @@ const ExcalidrawBase = (props: ExcalidrawProps) => {
           validateEmbeddable={validateEmbeddable}
           renderEmbeddable={renderEmbeddable}
           aiEnabled={aiEnabled !== false}
+          handleContextMenuItems={handleContextMenuItems}
         >
           {children}
         </App>

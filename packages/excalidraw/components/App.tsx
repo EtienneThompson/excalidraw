@@ -8981,8 +8981,13 @@ class App extends React.Component<AppProps, AppState> {
         showHyperlinkPopup: false,
       },
       () => {
+        let contextMenuItems = this.getContextMenuItems(type);
+        if (this.props.handleContextMenuItems) {
+          contextMenuItems =
+            this.props.handleContextMenuItems(contextMenuItems);
+        }
         this.setState({
-          contextMenu: { top, left, items: this.getContextMenuItems(type) },
+          contextMenu: { top, left, items: contextMenuItems },
         });
       },
     );
