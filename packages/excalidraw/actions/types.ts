@@ -154,6 +154,13 @@ export interface Action {
         appState: Readonly<AppState>,
         app: AppClassProperties,
       ) => string);
+  labelFallback?:
+    | string
+    | ((
+        elements: readonly ExcalidrawElement[],
+        appState: Readonly<AppState>,
+        app: AppClassProperties,
+      ) => string);
   predicate?: (
     elements: readonly ExcalidrawElement[],
     appState: AppState,
