@@ -78,18 +78,35 @@ export const ContextMenu = React.memo(
 
             const actionName = item.name;
             let label = "";
+            let translationKey: TranslationKeys | null = null;
+            let fallbackLabel = "";
             if (item.contextItemLabel) {
               if (typeof item.contextItemLabel === "function") {
-                label = t(
-                  item.contextItemLabel(
-                    elements,
-                    appState,
-                    actionManager.app,
-                  ) as unknown as TranslationKeys,
+                translationKey = item.contextItemLabel(
+                  elements,
+                  appState,
+                  actionManager.app,
+                ) as unknown as TranslationKeys;
+              } else {
+                translationKey =
+                  item.contextItemLabel as unknown as TranslationKeys;
+              }
+            }
+
+            if (item.labelFallback) {
+              if (typeof item.labelFallback === "function") {
+                fallbackLabel = item.labelFallback(
+                  elements,
+                  appState,
+                  actionManager.app,
                 );
               } else {
-                label = t(item.contextItemLabel as unknown as TranslationKeys);
+                fallbackLabel = item.labelFallback;
               }
+            }
+
+            if (translationKey) {
+              label = t(translationKey, null, fallbackLabel);
             }
 
             return (
